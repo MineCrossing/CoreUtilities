@@ -6,6 +6,10 @@ public class Logger {
         System.out.println("[INFO] " + msg);
     }
 
+    public static void success(String msg) {
+        System.out.println("[SUCCESS] " + msg);
+    }
+
     public static void warning(String msg) {
         System.out.println("[WARNING] " + msg);
     }

@@ -22,6 +22,10 @@ public class Logger {
         System.out.println("[DEBUG] " + msg);
     }
 
+    public static void custom(String prefix, String msg) {
+        System.out.println("[" + prefix + "] " + msg);
+    }
+
     public static void out(String msg) {
         System.out.println(msg);
     }

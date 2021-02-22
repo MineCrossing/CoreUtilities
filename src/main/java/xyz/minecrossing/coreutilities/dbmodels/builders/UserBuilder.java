@@ -2,6 +2,8 @@ package xyz.minecrossing.coreutilities.dbmodels.builders;
 
 import xyz.minecrossing.coreutilities.dbmodels.User;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -12,6 +14,17 @@ public class UserBuilder {
 	private String username;
 	private boolean admin;
 	private LocalDate createdDate;
+
+	public UserBuilder fromResultSet(ResultSet rs) throws SQLException {
+		userID = UUID.fromString(rs.getString(User.USER_ID_COL));
+		email = rs.getString(User.EMAIL_COL);
+		password = rs.getString(User.PASSWORD_COL);
+		admin = rs.getBoolean(User.ADMIN_COL);
+		createdDate = rs.getDate(User.CREATED_DATE_COL).toLocalDate();
+		username = rs.getString(User.USERNAME_COL);
+
+		return this;
+	}
 
 	public UserBuilder setUserID(UUID userID) {
 		this.userID = userID;

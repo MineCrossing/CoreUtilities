@@ -1,17 +1,29 @@
 package xyz.minecrossing.coreutilities.dbmodels;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.UUID;
 
 public class BlogPost implements IDatabaseModel<String> {
-	private UUID blogPostID;
-	private UUID userID;
+	@ColName(col = "blog_post_id")
+	private String blogPostID;
+
+	@ColName(col = "user_id")
+	private String userID;
+
+	@ColName(col = "title")
 	private String title;
+
+	@ColName(col = "subtitle")
 	private String subtitle;
+
+	@ColName(col = "author")
 	private String author;
+
+	@ColName(col = "content")
 	private String content;
+
+	@ColName(col = "created_date")
 	private LocalDateTime createdDate;
+
 
 	public final static String BLOG_POST_ID_COL = "blog_post_id";
 	public final static String USER_ID_COL = "user_id";
@@ -24,7 +36,7 @@ public class BlogPost implements IDatabaseModel<String> {
 	public BlogPost() {
 	}
 
-	public BlogPost(UUID blogPostID, UUID userID, String title, String subtitle, String author, String content, LocalDateTime createdDate) {
+	public BlogPost(String blogPostID, String userID, String title, String subtitle, String author, String content, LocalDateTime createdDate) {
 		this.blogPostID = blogPostID;
 		this.userID = userID;
 		this.title = title;
@@ -34,19 +46,19 @@ public class BlogPost implements IDatabaseModel<String> {
 		this.createdDate = createdDate;
 	}
 
-	public UUID getBlogPostID() {
+	public String getBlogPostID() {
 		return blogPostID;
 	}
 
-	public void setBlogPostID(UUID blogPostID) {
+	public void setBlogPostID(String blogPostID) {
 		this.blogPostID = blogPostID;
 	}
 
-	public UUID getUserID() {
+	public String getUserID() {
 		return userID;
 	}
 
-	public void setUserID(UUID userID) {
+	public void setUserID(String userID) {
 		this.userID = userID;
 	}
 
@@ -93,17 +105,5 @@ public class BlogPost implements IDatabaseModel<String> {
 	@Override
 	public String getKey() {
 		return userID.toString();
-	}
-
-	@Override
-	public List<String> getColumnNames() {
-		return List.of(
-				BLOG_POST_ID_COL,
-				USER_ID_COL,
-				TITLE_COL,
-				SUBTITLE_COL,
-				AUTHOR_COL,
-				CONTENT_COL,
-				CREATED_DATE_COL);
 	}
 }

@@ -5,11 +5,10 @@ import xyz.minecrossing.coreutilities.dbmodels.BlogPost;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public class BlogPostBuilder {
-	private UUID blogPostID;
-	private UUID userID;
+	private String blogPostID;
+	private String userID;
 	private String title;
 	private String subtitle;
 	private String author;
@@ -17,8 +16,8 @@ public class BlogPostBuilder {
 	private LocalDateTime createdDate;
 
 	public BlogPostBuilder fromResultSet(ResultSet rs) throws SQLException {
-		blogPostID = UUID.fromString(rs.getString(BlogPost.BLOG_POST_ID_COL));
-		userID = UUID.fromString(rs.getString(BlogPost.USER_ID_COL));
+		blogPostID = rs.getString(BlogPost.BLOG_POST_ID_COL);
+		userID = rs.getString(BlogPost.USER_ID_COL);
 		title = rs.getString(BlogPost.TITLE_COL);
 		subtitle = rs.getString(BlogPost.SUBTITLE_COL);
 		author = rs.getString(BlogPost.AUTHOR_COL);
@@ -28,12 +27,12 @@ public class BlogPostBuilder {
 		return this;
 	}
 
-	public BlogPostBuilder setBlogPostID(UUID blogPostID) {
+	public BlogPostBuilder setBlogPostID(String blogPostID) {
 		this.blogPostID = blogPostID;
 		return this;
 	}
 
-	public BlogPostBuilder setUserID(UUID userID) {
+	public BlogPostBuilder setUserID(String userID) {
 		this.userID = userID;
 		return this;
 	}

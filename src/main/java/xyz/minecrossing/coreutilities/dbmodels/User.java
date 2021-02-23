@@ -1,15 +1,19 @@
 package xyz.minecrossing.coreutilities.dbmodels;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.UUID;
 
 public class User implements IDatabaseModel<String> {
-	private UUID userID;
+	@ColName(col = "user_id")
+	private String userID;
+	@ColName(col = "email")
 	private String email;
+	@ColName(col = "password")
 	private String password;
+	@ColName(col = "username")
 	private String username;
+	@ColName(col = "admin")
 	private boolean admin;
+	@ColName(col = "created_date")
 	private LocalDate createdDate;
 
 	public final static String USER_ID_COL = "user_id";
@@ -22,7 +26,7 @@ public class User implements IDatabaseModel<String> {
 	public User() {
 	}
 
-	public User(UUID userID, String email, String password, String username, boolean admin, LocalDate createdDate) {
+	public User(String userID, String email, String password, String username, boolean admin, LocalDate createdDate) {
 		this.userID = userID;
 		this.email = email;
 		this.password = password;
@@ -31,11 +35,11 @@ public class User implements IDatabaseModel<String> {
 		this.createdDate = createdDate;
 	}
 
-	public UUID getUserID() {
+	public String getUserID() {
 		return userID;
 	}
 
-	public void setUserID(UUID userID) {
+	public void setUserID(String userID) {
 		this.userID = userID;
 	}
 
@@ -82,16 +86,5 @@ public class User implements IDatabaseModel<String> {
 	@Override
 	public String getKey() {
 		return userID.toString();
-	}
-
-	@Override
-	public List<String> getColumnNames() {
-		return List.of(
-				USER_ID_COL,
-				EMAIL_COL,
-				PASSWORD_COL,
-				USERNAME_COL,
-				ADMIN_COL,
-				CREATED_DATE_COL);
 	}
 }
